@@ -25,8 +25,8 @@ class User {
 
 var dao = $UserDao();
 
-class UserDstDao extends SdbDao<User> {
-
-  UserDstDao() : super(TABLE("user"), DGenerator(createSql: (d) {return "";}, dFromJson: (json) => User.fromJson(json), dToJson: (d) => d.toJson()));
-
-}
+//class UserDstDao extends SdbDao<User> {
+//
+//  UserDstDao() : super(TABLE("user"), DGenerator(createSql: (d) {return "";}, dFromJson: (json) => User.fromJson(json), dToJson: (d) => d.toJson()));
+//
+//}

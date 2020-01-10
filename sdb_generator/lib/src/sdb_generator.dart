@@ -3,6 +3,7 @@ import 'dart:mirrors';
 
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/file_system/file_system.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart' as cb;
 import 'package:code_builder/code_builder.dart';
@@ -113,19 +114,22 @@ class _ClassElementEx {
   Class build(AssetId inputId, cb.LibraryBuilder library) {
     if (!this.isApi()) return null;
 
-    var annotation = TypeChecker.fromRuntime(SdbGenerator.typeTable).firstAnnotationOf(element, throwOnUnresolved: false);
-    print("annotation: $annotation");
-    element.metadata.forEach((meta) {
-      print(meta);
-      print(meta.element);
-    });
-
     var c = Class((b) => b
     ..name = this.name
+    ..fields.add(_buildTableField())
     ..constructors.add(this._buildConstructor())
     ..extend = refer("${BASE_DAO_CLASS_NAME}<${element.name}>")
     );
     return c;
+  }
+
+  cb.Field _buildTableField() {
+    return cb.Field((b) => b
+    ..static = true
+    ..assignment = cb.literal(this.table.name()).code
+    ..type = cb.refer("String")
+    ..modifier = cb.FieldModifier.constant
+    ..name = "TABLE_NAME");
   }
 
   Constructor _buildConstructor() {
