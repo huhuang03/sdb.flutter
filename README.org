@@ -1,0 +1,2 @@
+* TODOS
+- first check can I load the config file

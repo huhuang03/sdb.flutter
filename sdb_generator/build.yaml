@@ -1,0 +1,19 @@
+# targets means builder run for self package, in here is sdb_generator.
+# the app use this package can not define this. which means run all builder
+targets:
+  sdb_generator:sdb_generator:
+    builders:
+      sdb_generator|sdb_generator:
+        generate_for:
+          - lib/test/*
+          - test/*
+
+builders:
+  sdb_generator:
+    import: 'package:sdb_generator/sdb_generator.dart'
+    builder_factories: ['sdbBuilder']
+    build_extensions:
+      .dart:
+        - .sdb.dart
+    build_to: source
+    auto_apply: dependents

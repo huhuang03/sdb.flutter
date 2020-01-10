@@ -1,0 +1,8 @@
+pubspec.lock
+.packages
+.dart_tool/
+sdb_generator/lib/test_api.dart
+sdb_generator/lib/test_api.sdb..dart
+*.g.dart
+*.sdb.dart
+.idea/

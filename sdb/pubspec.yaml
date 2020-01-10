@@ -1,0 +1,17 @@
+name: sdb
+description: thyi annotations
+version: 1.0.7
+homepage: http://github.com/huhuang03/thyi.flutter
+
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+
+dependencies:
+  sqflite: ^1.2.0
+  path:
+  sdb_annotation:
+    path: ../sdb_annotation
+  json_annotation:
+
+dev_dependencies:
+  test:
